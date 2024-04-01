@@ -37,7 +37,7 @@ export default class UnusedClasses {
   private mapClasses(list: string[]): Promise<UnusedClassesMap[]> {
     const promiseArray = list.map((element) => {
       const htmlPath = element;
-      const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+      const htmlContent = fs.readFileSync(htmlPath).toString('utf8');
 
       // Expect same path as the template except different extension.
       const cssPath = htmlPath.replace('.html', `.${this.config.styleExt}`);
