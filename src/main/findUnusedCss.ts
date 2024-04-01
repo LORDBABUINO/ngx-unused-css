@@ -16,7 +16,7 @@ export default async function findUnusedCss(
 ) {
   const css = compileSCSS(cssPath, config);
 
-  const html = parseNgClass(content, cssPath);
+  const html = parseNgClass(content);
 
   const options = {
     content: [

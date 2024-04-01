@@ -28,9 +28,8 @@ function createCopyOfElementWithClasses(
  * make copy of elements on the same level with all possible combinations of classes found
  * in ngClass configuration
  * @param {string} html
- * @param {string} cssPath
  */
-export default function parseNgClass(html: string, cssPath: string) {
+export default function parseNgClass(html: string) {
   const dom = new JSDOM(html);
 
   const all = dom.window.document.getElementsByTagName('*');
@@ -42,12 +41,6 @@ export default function parseNgClass(html: string, cssPath: string) {
       if (a.name === '[ngclass]') {
         const classes = extractClassesFromNgClass(a.value);
         e.removeAttribute('[ngclass]');
-        /*
-          console.log(
-            'ngClass removed from the element, classes found: ',
-            classes
-          );
-          */
         const classCombinations = combine(classes);
         classCombinations.forEach((c) => {
           const el = createCopyOfElementWithClasses(dom, e, c);
