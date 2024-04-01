@@ -6,11 +6,7 @@ import { UnusedClassesMap } from './helpers/unusedClassMapper';
 import UnusedClasses from './main/getUnusedClasses';
 
 export default class Main {
-  private config: Config;
-
-  constructor(config: Config) {
-    this.config = config;
-
+  constructor(private config: Config) {
     if (!config.styleExt) {
       config.styleExt = DEFAULT_STYLE_EXTENSION;
     }

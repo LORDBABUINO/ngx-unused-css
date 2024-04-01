@@ -14,6 +14,8 @@ module.exports = {
   rules: {
     semi: 0,
     '@typescript-eslint/no-explicit-any': 2,
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
     'space-before-function-paren': 'off'
   }
 };

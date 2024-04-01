@@ -9,11 +9,7 @@ import findUnusedCss from './findUnusedCss';
 export default class UnusedClasses {
   private allHtmlContent = '';
 
-  private config: Config;
-
-  constructor(private _config: Config) {
-    this.config = _config;
-  }
+  constructor(private config: Config) {}
 
   async getUnusedClasses(projectPath: string): Promise<UnusedClassesMap[]> {
     const list = findHtml(projectPath);
