@@ -24,9 +24,9 @@ const questions: prompts.PromptObject<string>[] = [
     name: 'styleExt',
     message: 'Which style extension is your project using?',
     choices: [
-      { title: 'SCSS', value: '.scss' },
-      { title: 'SASS', value: '.sass' },
-      { title: 'CSS', value: '.css' }
+      { title: 'SCSS', value: 'scss' },
+      { title: 'SASS', value: 'sass' },
+      { title: 'CSS', value: 'css' }
     ],
     initial: 0
   }
