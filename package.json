@@ -32,7 +32,7 @@
     "meow": "9.0.0",
     "prompts": "2.4.2",
     "purgecss": "4.0.3",
-    "sass": "1.48.0",
+    "sass": "^1.72.0",
     "table": "6.8.0"
   },
   "bin": {
@@ -56,7 +56,6 @@
     "@types/mock-fs": "^4.13.1",
     "@types/node": "^20.12.2",
     "@types/prompts": "^2.0.14",
-    "@types/sass": "^1.43.1",
     "@types/table": "^6.3.2",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
