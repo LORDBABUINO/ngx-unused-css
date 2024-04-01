@@ -4,26 +4,15 @@
  * @param { Array<string> } a - Array of strings
  */
 export default function combine(a: string[]): string[][] {
-  const fn = function (
-    n: number,
-    src: string[],
-    got: string[],
-    all: string[][]
-  ) {
-    if (n === 0) {
-      if (got.length > 0) {
-        all[all.length] = got;
-      }
-      return;
-    }
-    for (let j = 0; j < src.length; j++) {
-      fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
-    }
-  };
-  const all: string[][] = [];
-  for (let i = 0; i < a.length; i++) {
-    fn(i, a, [], all);
-  }
-  all.push(a);
-  return all;
+  const buildCombinations = (
+    index: number = 0,
+    current: string[] = []
+  ): string[][] =>
+    index === a.length
+      ? [current]
+      : buildCombinations(index + 1, current.concat(a[index])).concat(
+          buildCombinations(index + 1, current)
+        );
+
+  return buildCombinations().slice(0, -1);
 }
