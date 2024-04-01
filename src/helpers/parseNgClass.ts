@@ -32,22 +32,20 @@ function createCopyOfElementWithClasses(
 export default function parseNgClass(html: string) {
   const dom = new JSDOM(html);
 
-  const all = dom.window.document.getElementsByTagName('*');
-
-  const inputList = Array.prototype.slice.call(all);
-  inputList.forEach((e) => {
-    const attrs = Array.prototype.slice.call(e.attributes);
-    attrs.forEach((a) => {
-      if (a.name === '[ngclass]') {
-        const classes = extractClassesFromNgClass(a.value);
-        e.removeAttribute('[ngclass]');
-        const classCombinations = combine(classes);
-        classCombinations.forEach((c) => {
-          const el = createCopyOfElementWithClasses(dom, e, c);
-          e.parentNode.insertBefore(el, e.nextSibling);
-        });
-      }
+  const elements = [...dom.window.document.querySelectorAll('[\\[ngclass\\]]')];
+  elements.forEach((element) => {
+    const classes = extractClassesFromNgClass(
+      element.getAttribute('[ngclass]') ?? ''
+    );
+    element.removeAttribute('[ngclass]');
+    const classCombinations = combine(classes);
+    const fragment = dom.window.document.createDocumentFragment();
+    classCombinations.forEach((classSet) => {
+      fragment.appendChild(
+        createCopyOfElementWithClasses(dom, element, classSet)
+      );
     });
+    element.parentNode?.insertBefore(fragment, element.nextSibling);
   });
 
   return dom.serialize();
