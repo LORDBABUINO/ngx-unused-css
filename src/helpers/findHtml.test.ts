@@ -1,5 +1,5 @@
-import findHtml from './findHtml'
-import mock from 'mock-fs'
+import findHtml from './findHtml';
+import mock from 'mock-fs';
 
 describe('findHtml', () => {
   beforeEach(() => {
@@ -10,18 +10,22 @@ describe('findHtml', () => {
           'somefilefromsubdir.html': 'file content here'
         }
       }
-    })
-  })
+    });
+  });
 
   afterAll(() => {
-    mock.restore()
-  })
+    mock.restore();
+  });
 
   it('should return array of html files', () => {
-    const results = findHtml('base')
+    const results = findHtml('base');
     expect(results).toEqual([
       'base/somefile.html',
       'base/subdir/somefilefromsubdir.html'
-    ])
-  })
-})
+    ]);
+  });
+
+  it('should return an empty array for an empty base path', () => {
+    expect(findHtml('')).toEqual([]);
+  });
+});
