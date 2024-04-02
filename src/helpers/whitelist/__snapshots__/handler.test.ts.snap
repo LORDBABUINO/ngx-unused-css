@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handler function filters classes based on ignore list 1`] = `
+[
+  "btn-primary",
+  "text-center",
+  "active",
+]
+`;
+
+exports[`handler function ignores specific selectors from fileIgnore 1`] = `
+[
+  "text-center",
+]
+`;
+
+exports[`handler function returns empty array if fileIgnore all is true 1`] = `[]`;
