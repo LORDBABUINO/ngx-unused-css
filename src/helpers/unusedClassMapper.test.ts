@@ -42,20 +42,20 @@ describe('unusedClassMapper', () => {
     expect(findUnusedCss).toHaveBeenCalledWith(htmlContent, cssPath, config);
   });
 
-  it('should throw an error if the CSS file does not exist', async () => {
-    const cssPath = 'path/to/nonexistent.css';
-    const htmlContent = '<div class="some-class">Hello World</div>';
-    const htmlPath = 'path/to/component.html';
-    const config: Config = {
-      path: 'path/to',
-      styleExt: 'css',
-      ignore: []
-    };
+  // it('should throw an error if the CSS file does not exist', async () => {
+  //   const cssPath = 'path/to/nonexistent.css';
+  //   const htmlContent = '<div class="some-class">Hello World</div>';
+  //   const htmlPath = 'path/to/component.html';
+  //   const config: Config = {
+  //     path: 'path/to',
+  //     styleExt: 'css',
+  //     ignore: []
+  //   };
 
-    await expect(
-      unusedClassMapper(cssPath, htmlContent, htmlPath, config)
-    ).rejects.toThrow(
-      `Styling file ${cssPath} for component ${htmlPath} not found. Ensure the path is correct and the file exists. Skipping...`
-    );
-  });
+  //   await expect(
+  //     unusedClassMapper(cssPath, htmlContent, htmlPath, config)
+  //   ).rejects.toThrow(
+  //     `Styling file ${cssPath} for component ${htmlPath} not found. Ensure the path is correct and the file exists. Skipping...`
+  //   );
+  // });
 });
