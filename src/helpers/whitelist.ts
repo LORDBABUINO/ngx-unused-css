@@ -9,17 +9,16 @@ export default function whitelist(
   ignore: (string | Ignore)[],
   projectPath: string
 ) {
-  const fileToIgnore = (cssPath: string) => {
-    const ignoreList = ignore.filter((c) => typeof c === 'object') as Ignore[];
-    return ignoreList.find((c) => path.join(projectPath, c.file) === cssPath);
-  };
-
-  const ignoreFileMatched = fileToIgnore(cssPath);
+  const normalizedCssPath = path.resolve(cssPath);
+  const fileToIgnore = ignore.find(
+    (c) =>
+      typeof c === 'object' &&
+      path.resolve(projectPath, c.file) === normalizedCssPath
+  ) as Ignore;
 
   const ignoreSelectors = SELECTORS_TO_IGNORE.concat(
-    // @ts-ignore
-    ignore && ignore.filter((c) => typeof c === 'string')
+    ignore.filter((c) => typeof c === 'string') as string[]
   );
 
-  return handler(classes, ignoreFileMatched, ignoreSelectors);
+  return handler(classes, fileToIgnore, ignoreSelectors);
 }

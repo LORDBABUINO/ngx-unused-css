@@ -5,23 +5,12 @@ export function handler(
   fileIgnore: Ignore | undefined,
   ignore: string[]
 ) {
-  if (fileIgnore) {
-    const selectorsToIgnore = fileIgnore.selectors || [];
-    ignore = ignore.concat(selectorsToIgnore);
+  const allIgnorePatterns = [...ignore, ...(fileIgnore?.selectors || [])];
 
-    // ignore all unused classes from file
-    if (fileIgnore.all) {
-      return [];
-    }
-  }
-
-  // filter ignored selectors
-  classes = classes.filter((c) => {
-    const ignoredSelectorFound = ignore.some((s) => {
-      return c.indexOf(s) > -1;
-    });
-    return !ignoredSelectorFound;
-  });
-
-  return classes;
+  return fileIgnore?.all
+    ? []
+    : classes.filter(
+      (c) =>
+        !allIgnorePatterns.some((ignorePattern) => c.includes(ignorePattern))
+    );
 }
