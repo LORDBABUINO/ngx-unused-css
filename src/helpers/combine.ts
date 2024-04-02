@@ -11,8 +11,8 @@ export default function combine(a: string[]): string[][] {
     index === a.length
       ? [current]
       : buildCombinations(index + 1, current.concat(a[index])).concat(
-          buildCombinations(index + 1, current)
-        );
+        buildCombinations(index + 1, current)
+      );
 
   return buildCombinations().slice(0, -1);
 }

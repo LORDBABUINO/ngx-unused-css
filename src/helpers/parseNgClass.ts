@@ -15,10 +15,7 @@ function createCopyOfElementWithClasses(
 ) {
   const el = dom.window.document.createElement(e.tagName);
 
-  e.classList.forEach((c) => {
-    el.classList.add(c);
-  });
-
+  e.classList.forEach((c) => el.classList.add(c));
   classes.forEach((c) => el.classList.add(c));
   return el;
 }
