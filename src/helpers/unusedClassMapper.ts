@@ -25,7 +25,7 @@ export default async function unusedClassMapper(
     await promisify(fs.stat)(cssPath);
   } catch (error) {
     throw new Error(
-      'Styling file for component ' + htmlPath + ' not found, skipping...'
+      `Styling file ${cssPath} for component ${htmlPath} not found. Ensure the path is correct and the file exists. Skipping...`
     );
   }
 
