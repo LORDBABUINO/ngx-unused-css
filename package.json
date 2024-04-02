@@ -11,7 +11,7 @@
     "build": "tsc",
     "lint": "eslint --ext .ts src/**",
     "lint:fix": "eslint --fix --ext .ts src/**",
-    "test": "jest src/** --runInBand",
+    "test": "jest src/** --runInBand --coverage",
     "test:watch": "jest src/** --runInBand --watch",
     "e2e": "jest e2e/test.ts",
     "e2e:manual": "cd e2e && npm test",
